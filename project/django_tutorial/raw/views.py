@@ -17,8 +17,8 @@ def challengesform(request):
             return render(request, 'challengesform.html', {'form':form,'success':True})
 
     else: 
-        form = ChallengeForm()
+        form = ChallengeForm
 
 
 
-    return(request,'challengesform.html', {'form':form})
+    return render(request,'challengesform.html', {'form':form})

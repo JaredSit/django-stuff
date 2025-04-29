@@ -1,12 +1,10 @@
-from socket import fromshare
 from django import forms
 
-from views import challenges
+from .views import *
 
 from .models import *
 
-class ChallengeForm(forms.modelForm):
+class ChallengeForm(forms.ModelForm):
     class Meta:
-        model = Challenge
         fields = ['name', 'summary','flag_value','points']
 
