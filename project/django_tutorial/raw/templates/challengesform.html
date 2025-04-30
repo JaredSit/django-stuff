@@ -5,10 +5,10 @@
         <h2 class = 'text-success'>{{message}}</h2>
     {% endfor %}
 
+    
     <form method='post'>
-        {% csrf_token %} <!-- Security mechanism to prevent sql injection -->
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
 {% endblock %}

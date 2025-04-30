@@ -12,6 +12,7 @@ class Challenge(models.Model):
 
     def __str__(self):
         return self.name
+
 class Participant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     flags_solved = models.ManyToManyField(Challenge, blank=True, related_name='completed_by')
@@ -23,6 +24,7 @@ class Participant(models.Model):
     def update_points(self):
         self.total_points = sum(challenge.points for challenge in self.flags_solved.all())
         self.save()
+
 class ChallengeCompletion(models.Model):
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
@@ -31,6 +33,7 @@ class ChallengeCompletion(models.Model):
 
     def __str__(self):
         return f"{self.participant.user.username} completed {self.challenge.name}."
+
 class Operation(models.Model):
     running = models.BooleanField(default=False)
     timer = models.CharField(max_length=40, default='', verbose_name="time (March 18, 2025 15:37:25")
@@ -43,6 +46,7 @@ class Operation(models.Model):
             raise ValidationError({
                 'timer': 'timer must be in the format "March 18, 2025 15:37:25".'
             })
+
 class Notification(models.Model):
     title = models.CharField(max_length=225)
     message = models.TextField()
