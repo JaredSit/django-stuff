@@ -26,12 +26,12 @@ def challenges(request):
     challenges = Challenge.objects.all()
     participant = None
     solved_challenge_ids = []
-    if request.user.is_authenticated:
-        participant = Participant.objects.get(user=request.user)
-        solved_challenge_ids = participant.flags_solved.values_list('id',flat=True)
+    #if request.user.is_authenticated:
+        #participant = Participant.objects.get(user=request.user)
+        #solved_challenge_ids = participant.flags_solved.values_list('id',flat=True)
 
-        print(f"Participant {participant}, Type: {type(participant)}")
-        print(f"Solved Challenges: {solved_challenge_ids}")
+        #print(f"Participant {participant}, Type: {type(participant)}")
+        #print(f"Solved Challenges: {solved_challenge_ids}")
 
     return render(request, 'challenges.html', {
         'challenges': challenges,
@@ -97,6 +97,7 @@ def challengeform(request):
         'notify':notify,
         'operations':operations,
     })
+
 def participants(request):
     participants = Participant.objects.all()
     return render(request, 'participants.html', {
