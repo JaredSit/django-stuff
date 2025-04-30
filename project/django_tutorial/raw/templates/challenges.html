@@ -1,21 +1,56 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>jelol</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-            hello, challenges here
-    </body>
-</html>
+{% extends 'index.html' %}
+{% block content %}
+<h2>Challenges</h2>
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th scope = 'col'>Challenge Name</th>
+            <th scope = 'col'>Summary</th>
+            <th scope = 'col'>Flag Value</th>
+            <th scope = 'col'>Points</th>
+        </tr>
+        <tbody>
+            {% for i in challenges %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.summary }}</td>
+                    <td>{{ i.flag_value }}</td>
+                    <td>{{ i.points }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </thead>
+</table>
+<center>
+<div class="card_shadow" style="text-align:left;width=100%">
+    <div class="card_body">
+<div class="container mt-5">
+    <center><h2>Challenges</h2>
+<div class="row">
+    {% for challenge in challenges %}
+        <div class="col-md-4 mb-4">
+            <div class="card_shadow" style="border: 0px;">
+                <div class="card-body" style="text-align:center; background-color:#6D6D6E; color: white;border-radius: 20px 20px 20px 20px;">
+                    <h5 class="card_title">
+                        {{ challenge.name }}<br><h6>({{challenge.points}}pts)</h6>
+
+                            {% if challenge.id in solved_challenge_ids %}
+                            <div class="ribbon2">
+                                <span style="color: white;">Solved &#x2713;</span>
+                            </div>
+                            {% endif %}
+                        <hr>
+                        <p class="card-text" style="color:yellow;">{{ challenge.catergory }}</p>
+                    </h5>
+                    <p class="card-text">{{ challenge.summary }}</p>
+                    <a href="{% url 'challenge_details' challenge.id %}" class="btn btn-primary">Veiw Challenge</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+</center>
+{% endblock %}

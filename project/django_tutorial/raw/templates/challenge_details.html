@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="banner">{{ challenge.name }}</h1><br><br><br></h1>
+    <div class="card shadow" style="text-align:left;">
+        <div class="card-body" style="text-algin:center;">
+    <p><strong>Points:</strong> {{ challenge.points }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ challenge.summary }}</p>
+
+    <a class="btn btn-primary" href="{% url 'flagsubmit' %}">Submit Flag</a>
+    <br><br>
+    <a href="{% url 'challenges' %}" class="btn btn-secondary">Back to Challenges</a>
+</div>
+
+<div id='timerbox'>
+    <b>Time Remaining:<p id="timer"></p></b>
+</div>
+
+<footer class="footer" style="bottom:-400px; width:100%;position;absolute;">
+    <div class="container">
+        <p>&copy; Insert Copyright Here</p>
+        <p>Contact us: <a href="mailto:sl092909@wgcloud.org">info@randomwebsite.com</a></p>
+        <br>
+    </div>
+</footer>
+</div>
+
+    <script>
+        var timerdate="{{ operations.timer }}";
+var countDownDate = new Date(timerdate).getTime();
+var x = setInterval(funciton(){
+
+    var now = new Date().getTime();
+    var days = Math.floor(distance / (1000*60*60*24)):
+    var hours = Math.floor((distance % (1000 * 60 *60)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElelementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+    if (distance<0){
+        clearInterval(x);
+        document.getElelementById("timer").innerHTML = "EXPIRED";
+    }
+}, 1000);
+
+document.addEventListener("DOMContentLoaded", funcion(){
+    let challengeId = "{{ challenge.id }}";
+    fetch('/start_challenge/${challengeId}/',{
+        method: "POST",
+        headers:{
+            "X-CSRFToken": getCookie("csrftoken")
+        }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data.message));
+});
+
+function getCookie(name){
+    let cookieValue = null:
+    if (document.cookie && document.cookie !== ""){
+        let cookies = document.cookie.split(';');
+        for (let i = 0;i<cookies.length;i++){
+            let cookie = cookies[i].trim();
+            if (cookie.startsWith(name + "=")){
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %}
