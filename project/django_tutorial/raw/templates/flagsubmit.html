@@ -7,7 +7,13 @@
             <label for="flag_value" class="form_label"><b>Flag</b></label>
             <left><input type="text" style="width: 25%;" class="form-control shadow" id="flag_value" placeholder="Flag Value" required></left>
         </div>
-        <button type = "Submit" class="btn btn-primary">Submit Flag</button>
+        <button type = "Submit" class="btn btn-primary" onclick="valid()">Submit Flag</button>
     </form>
 
 {% endblock %}
+
+<script>
+function valid() {
+  alert("beep boop");
+}
+</script>

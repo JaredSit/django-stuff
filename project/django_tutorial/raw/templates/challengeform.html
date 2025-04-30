@@ -1,11 +1,6 @@
 {% extends 'index.html' %}
 {% block content %}
 
-    {% for message in messages %}
-        <h2 class = 'text-success'>{{message}}</h2>
-    {% endfor %}
-
-    
     <form method='post'>
         {% csrf_token %}
         {{ form.as_p }}

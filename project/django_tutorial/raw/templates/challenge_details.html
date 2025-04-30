@@ -17,7 +17,7 @@
     <b>Time Remaining:<p id="timer"></p></b>
 </div>
 
-<footer class="footer" style="bottom:-400px; width:100%;position;absolute;">
+<footer class="footer" style="bottom:-400px; width:100%;position:absolute;">
     <div class="container">
         <p>&copy; Insert Copyright Here</p>
         <p>Contact us: <a href="mailto:sl092909@wgcloud.org">info@randomwebsite.com</a></p>
@@ -29,10 +29,10 @@
     <script>
         var timerdate="{{ operations.timer }}";
 var countDownDate = new Date(timerdate).getTime();
-var x = setInterval(funciton(){
+var x = setInterval(function(){
 
     var now = new Date().getTime();
-    var days = Math.floor(distance / (1000*60*60*24)):
+    var days = Math.floor(distance / (1000*60*60*24));
     var hours = Math.floor((distance % (1000 * 60 *60)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -45,7 +45,7 @@ var x = setInterval(funciton(){
     }
 }, 1000);
 
-document.addEventListener("DOMContentLoaded", funcion(){
+document.addEventListener("DOMContentLoaded", function() {
     let challengeId = "{{ challenge.id }}";
     fetch('/start_challenge/${challengeId}/',{
         method: "POST",
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", funcion(){
 });
 
 function getCookie(name){
-    let cookieValue = null:
+    let cookieValue = null;
     if (document.cookie && document.cookie !== ""){
         let cookies = document.cookie.split(';');
         for (let i = 0;i<cookies.length;i++){

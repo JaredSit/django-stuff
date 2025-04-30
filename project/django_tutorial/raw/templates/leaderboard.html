@@ -27,7 +27,7 @@
                     {% for flag in participant.flags_solved.all %}
                         {{ flag.name }}
                         {% if flag in current_user_flags %}
-                            <span class="text-danger">🚩</span>
+                            <span class="text-danger"> [] </span>
                         {% endif %}
                         {% if not forloop.last %}, {% endif %}
                     {% endfor %}
@@ -39,13 +39,14 @@
 </div>
 </div>
 <div id="timerbox">
-    <b>Time Remaining:
-<br><p id="timer"></p></b>
+    <b>Time Remaining: </b>
+    you're cooked
+<br><p id="timer"></p>
 </div>
     <script>
         var timerdate = "{{operations.timer}}";
 var countDownDate = new Date(timerdate).getTime();
-var x = setInterval(funcion(){
+var x = setInterval(function(){
     var now = new Date().getTime();
     var distance = countDownDate - now;
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
