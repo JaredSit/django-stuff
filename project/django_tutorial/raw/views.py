@@ -106,9 +106,9 @@ def participants(request):
         'notify':notify,
         'operations':operations,
     })
-def flagsubmit(request):
+def submit_flag(request):
     if request.method == 'POST':
-        form = FlagForm(request.POST)
+        form = FlagSubmissionForm(request.POST)
 
         if form.is_valid():
             flag_value = form.cleaned_data['flag_value']
@@ -117,13 +117,15 @@ def flagsubmit(request):
                 challenge = Challenge.objects.get(flag_value=flag_value)
                 participant = Participant.objects.get(user=request.user)
 
-                completion,created = ChallengeCompletion.objects.get_or_create(participant=participant, challenge=challenge)
+                completion, created = ChallengeCompletion.objects.get_or_create(
+                    participant=participant, challenge=challenge)
+
                 if not completion.start_time:
                     messages.error(request, "Start time is missing. Try refreshing the challenge page.")
                     return redirect('submit_flag',{
                         'notify':notify,
                         'operations':operations,})
-                        
+
                 if challenge not in participant.flags_solved.all():
                     participant.flags_solved.add(challenge)
                     participant.update_points()
@@ -137,9 +139,9 @@ def flagsubmit(request):
             except Challenge.DoesNotExist:
                 messages.error(request, "Invalid flag. Please try again.")
     else:
-        form = FlagForm()
+        form = FlagSubmissionForm()
     
-    return render(request, 'flagsubmit.html',{
+    return render(request, 'submit_flag.html',{
         'form':form,
         'notify':notify,
         'operations':operations,

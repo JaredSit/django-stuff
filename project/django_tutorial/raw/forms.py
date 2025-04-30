@@ -13,7 +13,7 @@ class ChallengeForm(forms.ModelForm):
             'flag_value',
             'points',
         ]
-class FlagForm(forms.Form):
+class FlagSubmissionForm(forms.Form):
     flag_value = forms.CharField(max_length=100, label="Enter Flag")
 
 class CustomUserCreationForm(UserCreationForm):

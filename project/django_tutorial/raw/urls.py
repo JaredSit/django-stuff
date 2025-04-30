@@ -8,7 +8,7 @@ urlpatterns = [
     path('start_challenge/<int:challenge_id>/', views.start_challenge,name='start_challenge'),
     path('challengeform/',views.challengeform,name='challengeform'),
     path('participants/',views.participants,name='participants'),
-    path('flagsubmit/',views.flagsubmit,name='flagsubmit'),
+    path('submit_flag/',views.submit_flag,name='submit_flag'),
     path('leaderboard/',views.leaderboard,name='leaderboard'),
     path('register/',views.registration,name='register')
 ]
