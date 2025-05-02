@@ -5,7 +5,7 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="flag_value" class="form_label"><b>Flag</b></label>
-            <left><input type="text" style="width: 25%;" class="form-control shadow" id="flag_value" placeholder="Flag Value" required></left>
+            <left><input type="text" style="width: 25%;" class="form-control shadow" name="flag_value" id="flag_value" placeholder="Enter your Flag" required></left>
         </div>
         <button type = "Submit" class="btn btn-primary" onclick="valid()">Submit Flag</button>
     </form>

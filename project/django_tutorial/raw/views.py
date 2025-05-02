@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login
@@ -106,6 +106,7 @@ def participants(request):
         'notify':notify,
         'operations':operations,
     })
+
 def submit_flag(request):
     if request.method == 'POST':
         form = FlagSubmissionForm(request.POST)
@@ -146,6 +147,7 @@ def submit_flag(request):
         'notify':notify,
         'operations':operations,
     })
+
 def leaderboard(request):
     participants = Participant.objects.all().order_by('-total_points')
     current_user_flags = request.user.participant.flags_solved.all()

@@ -1,7 +1,8 @@
-from time import timezone
+from datetime import timezone
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Challenge(models.Model):
